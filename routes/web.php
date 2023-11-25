@@ -17,18 +17,32 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-/* Route Grouping */
+Route::get('home', function () {
+    $blogs = [
+            [
+                'title' => 'Title one',
+                'body' => 'this is a body text'
+            ],
+            [
+                'title' => 'Title two',
+                'body' => 'this is a body text'
+            ],
+            [
+                'title' => 'Title three',
+                'body' => 'this is a body text'
+            ],
+            [
+                'title' => 'Title four',
+                'body' => 'this is a body text'
+            ]
+        ];
+    return view('home', compact('blogs'));
+});
 
-Route::group(['prefix' => 'user'], function() {
-    Route::get('/', function() {
-        return "<h1>Customer List</h1>";
-    });
+Route::get('about', function () {
+    return view('about');
+})->name('about');
 
-    Route::get('/create', function() {
-        return "<h1>Customer Create</h1>";
-    });
-
-    Route::get('/show', function() {
-        return "<h1>Customer Show</h1>";
-    });
+Route::get('contact', function () {
+    return view('contact');
 });
