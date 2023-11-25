@@ -17,10 +17,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('about', function() {
-    return "<h1>About Page</h1>";
-});
+/* Route Grouping */
 
-Route::get('contact', function() {
-    return "<h1>Contact Page</h1>";
+Route::group(['prefix' => 'user'], function() {
+    Route::get('/', function() {
+        return "<h1>Customer List</h1>";
+    });
+
+    Route::get('/create', function() {
+        return "<h1>Customer Create</h1>";
+    });
+
+    Route::get('/show', function() {
+        return "<h1>Customer Show</h1>";
+    });
 });
