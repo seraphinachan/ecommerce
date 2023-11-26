@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,32 +22,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('home', function () {
-    $blogs = [
-            [
-                'title' => 'Title one',
-                'body' => 'this is a body text'
-            ],
-            [
-                'title' => 'Title two',
-                'body' => 'this is a body text'
-            ],
-            [
-                'title' => 'Title three',
-                'body' => 'this is a body text'
-            ],
-            [
-                'title' => 'Title four',
-                'body' => 'this is a body text'
-            ]
-        ];
-    return view('home', compact('blogs'));
-});
+Route::get('/home', HomeController::class);
 
-Route::get('about', function () {
-    return view('about');
-})->name('about');
+Route::get('/login', [LoginController::class, 'index'])->name('login');
 
-Route::get('contact', function () {
-    return view('contact');
-});
+Route::post('/login', [LoginController::class, 'handleLogin'])->name('login.submit');
